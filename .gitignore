@@ -1,1 +1,5 @@
 .env
+tmp
+/*.pyc
+nancy\nancy\__pycache__
+nancy\nancy\spiders\__pycache__

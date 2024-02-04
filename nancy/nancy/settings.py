@@ -13,10 +13,14 @@ SPIDER_MODULES = ["nancy.spiders"]
 NEWSPIDER_MODULE = "nancy.spiders"
 
 ITEM_PIPELINES = {
-  'scrapy.pipelines.images.ImagesPipeline': 1,
+#   'scrapy.pipelines.images.ImagesPipeline': 1,
+  'nancy.spiders.glamour_crawler.MyImagesPipeline': 1,
 }
 
 IMAGES_STORE = 'tmp/images'
+
+# IMAGES_MIN_WIDTH = 300
+# IMAGES_MIN_HEIGHT = 300
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "nancy (+http://www.yourdomain.com)"

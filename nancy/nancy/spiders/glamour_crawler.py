@@ -1,5 +1,8 @@
+from urllib.parse import urlparse
+from urllib.request import Request
 import scrapy
-from pathlib import Path
+from scrapy.pipelines.images import ImagesPipeline
+from pathlib import Path, PurePosixPath
 
 
 class GlamourImageSpider (scrapy.Spider):
@@ -20,9 +23,18 @@ class GlamourImageSpider (scrapy.Spider):
         for item in zip(title, img):
             scraped_info = {
                 "title": item[0],
-                "img": [(item[1])]
+                "image_urls": [item[1]]
             }
             
             yield scraped_info
         
+class MyImagesPipeline(ImagesPipeline):
+    
+    def file_path(self, request, response=None, info=None, item=None):
+        # return request.meta.get('title')
+        return "full/" + item['title'] + ".jpg"
+    # def get_media_requests(self, item, info):
+    #     image_urls = item['image_urls']
+    #     meta = {'filename': item['title']}
+    #     yield Request(url=image_urls, meta=meta)
         
